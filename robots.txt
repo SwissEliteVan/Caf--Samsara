@@ -1,0 +1,12 @@
+# Robots.txt for Café Samsara
+# https://cafesamsara.com.mx/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cafesamsara.com.mx/sitemap.xml
+
+# Disallow sensitive files
+Disallow: /.htaccess
+Disallow: /security.txt
