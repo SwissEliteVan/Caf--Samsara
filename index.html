@@ -3,38 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Café Samsara - Oasis tropical en Zipolite, Oaxaca. Café de especialidad, comida consciente y cultura a 20 metros del mar.">
     <title>Café Samsara | Oasis Tropical Zipolite</title>
+    <meta name="description" content="Café de especialidad, desayunos saludables y eventos culturales a 20 metros del mar en Zipolite, Oaxaca. WiFi Starlink, pet-friendly, opciones veganas.">
     
-    <!-- Préchargement des polices critiques -->
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Café Samsara | Oasis Tropical Zipolite">
+    <meta property="og:description" content="Tu oasis frente al mar en Zipolite. Café especial, comida saludable y cultura.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+    
+    <!-- Preconnect pour optimisation -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Préchargement de l'image hero -->
+    <!-- Preload images critiques -->
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
     
     <style>
-        /* --- VARIABLES & RESET --- */
+        /* --- CRITICAL CSS --- */
         :root {
             --bg-sand: #FAF9F6;
-            --bg-white: #FFFFFF;
             --text-dark: #2C3E50;
             --primary-green: #2E8B57;
             --accent-orange: #D35400;
             --gold: #FFD700;
+            --ocean-blue: #1E88E5;
             --font-main: 'Lato', sans-serif;
             --font-title: 'Playfair Display', serif;
         }
         
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
         }
         
-        html {
-            scroll-behavior: smooth;
+        html { 
+            scroll-behavior: smooth; 
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -46,73 +52,92 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3, h4 {
-            font-family: var(--font-title);
-            color: var(--text-dark);
-            line-height: 1.2;
+        
+        /* --- SMOOTH LOADING --- */
+        .js-loading *,
+        .js-loading *:before,
+        .js-loading *:after {
+            animation-play-state: paused !important;
         }
         
-        h2 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--primary-green);
-        }
-        
-        .subtitle {
-            text-align: center;
-            color: #7f8c8d;
-            margin-bottom: 3rem;
-            font-style: italic;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-orange);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn:hover, .btn:focus {
-            background-color: #b04600;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .btn:active {
-            transform: translateY(-1px);
-        }
-
-        /* --- HEADER --- */
+        /* --- HEADER IMMÉDIAT --- */
         header {
-            background: white;
-            padding: 1rem 2rem;
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 2rem;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            animation: fadeInDown 0.5s ease;
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
         }
         
-        @keyframes fadeInDown {
+        header.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .logo { 
+            font-family: var(--font-title); 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: var(--primary-green); 
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo::before {
+            content: "☕";
+            font-size: 1.3rem;
+        }
+        
+        /* --- HERO OPTIMISÉ --- */
+        .hero {
+            min-height: 100vh;
+            background: 
+                linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%),
+                url('https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') 
+                center/cover no-repeat fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+            font-weight: 300;
+        }
+        
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -120,38 +145,131 @@
             }
         }
         
-        .logo {
-            font-family: var(--font-title);
-            font-size: 1.5rem;
+        /* --- RESTE DU CSS --- */
+        h1, h2, h3 { 
+            font-family: var(--font-title); 
+            color: var(--text-dark); 
+            line-height: 1.2;
+        }
+        
+        h2 { 
+            font-size: clamp(2rem, 5vw, 2.8rem); 
+            text-align: center; 
+            margin-bottom: 1rem; 
+            color: var(--primary-green); 
+        }
+        
+        p { margin-bottom: 1rem; }
+        
+        .subtitle { 
+            text-align: center; 
+            color: #7f8c8d; 
+            margin-bottom: 3rem; 
+            font-style: italic; 
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: bold;
-            color: var(--primary-green);
-            text-decoration: none;
-        }
-        
-        nav ul {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 700;
-            font-size: 0.9rem;
             text-transform: uppercase;
-            transition: color 0.3s ease;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
             position: relative;
+            overflow: hidden;
         }
         
-        nav a:hover, nav a:focus {
-            color: var(--accent-orange);
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        .btn:hover { 
+            background-color: #b04600; 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(211, 84, 0, 0.3); 
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-outline { 
+            background: transparent; 
+            border: 2px solid white; 
+            margin-left: 15px; 
+        }
+        
+        .btn-outline:hover { 
+            background: white; 
+            color: var(--text-dark); 
+        }
+        
+        .btn-green {
+            background-color: var(--primary-green);
+        }
+        
+        .btn-green:hover {
+            background-color: #267a49;
+        }
+        
+        /* --- NAVIGATION --- */
+        nav ul { 
+            display: flex; 
+            gap: 25px; 
+            list-style: none; 
+        }
+        
+        nav a { 
+            text-decoration: none; 
+            color: var(--text-dark); 
+            font-weight: 700; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            transition: all 0.3s; 
+            position: relative;
+            padding: 5px 0;
         }
         
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
@@ -159,172 +277,181 @@
             transition: width 0.3s ease;
         }
         
-        nav a:hover::after, nav a:focus::after {
+        nav a:hover { 
+            color: var(--accent-orange); 
+        }
+        
+        nav a:hover::after {
             width: 100%;
         }
-
-        /* --- HERO --- */
-        .hero {
-            min-height: 85vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') 
-                        center/cover no-repeat;
+        
+        /* --- SECTIONS --- */
+        section { 
+            padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 4vw, 2rem); 
+            scroll-margin-top: 100px;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%;
+        }
+        
+        /* --- SOCIAL PROOF BANNER --- */
+        .social-proof {
+            background: linear-gradient(135deg, var(--primary-green), #34a853);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-proof-content {
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            color: white;
-            padding: 20px;
-            position: relative;
+            gap: 3rem;
+            flex-wrap: wrap;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(46, 139, 87, 0.1), rgba(211, 84, 0, 0.1));
-            z-index: 0;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            margin-bottom: 1rem;
-            color: white;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-        
-        .hero p {
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            max-width: 600px;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-        
-        .hero .btn {
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* --- SECTIONS GENERAL --- */
-        section {
-            padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 4vw, 2rem);
-            scroll-margin-top: 80px;
-        }
-        
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        /* --- ABOUT / INTRO --- */
-        .about {
-            background: white;
-            position: relative;
-        }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: clamp(2rem, 5vw, 4rem);
+        .rating {
+            display: flex;
             align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
         }
         
-        .about-img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 10px 10px 0 var(--primary-green);
+        .stars {
+            color: var(--gold);
+            font-size: 1.3rem;
+        }
+        
+        /* --- VALUE PROPOSITION --- */
+        .value-props {
+            background: white;
+            padding: 4rem 2rem;
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
             transition: transform 0.3s ease;
         }
         
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .value-item h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+        
+        /* --- ABOUT --- */
+        .about { 
+            background: white; 
+            position: relative;
+        }
+        
+        .about-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 4rem; 
+            align-items: center; 
+        }
+        
+        .about-img { 
+            width: 100%; 
+            border-radius: 15px; 
+            box-shadow: 15px 15px 0 var(--primary-green); 
+            transition: transform 0.5s ease;
+        }
+        
         .about-img:hover {
-            transform: scale(1.02);
+            transform: translateY(-10px);
         }
         
-        /* --- MENU PREVIEW --- */
-        .menu-preview {
+        /* --- MENU --- */
+        .menu-preview { 
             background-color: var(--bg-sand);
+            position: relative;
         }
         
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+        .menu-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 3rem;
         }
         
-        .menu-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+        .menu-item { 
+            background: white; 
+            padding: 2.5rem 2rem; 
+            border-radius: 15px; 
+            text-align: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
             height: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        .menu-item:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12); 
         }
         
-        .menu-item img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1rem;
+        .menu-item img { 
+            width: 140px; 
+            height: 140px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            margin: 0 auto 1.5rem;
+            border: 5px solid var(--bg-sand);
         }
         
-        .menu-item h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary-green);
-            flex-grow: 0;
+        .menu-item h3 { 
+            margin-bottom: 0.5rem; 
+            color: var(--primary-green); 
+            font-size: 1.4rem;
         }
         
-        .price {
-            color: var(--accent-orange);
-            font-weight: bold;
-            font-size: 1.2rem;
-            display: block;
-            margin: 10px 0;
-            flex-grow: 0;
+        .price { 
+            color: var(--accent-orange); 
+            font-weight: bold; 
+            font-size: 1.4rem; 
+            display: block; 
+            margin: 15px 0; 
         }
         
         .menu-item p {
             flex-grow: 1;
+            color: #666;
         }
-
+        
         /* --- EVENTS --- */
-        .events {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
+        .events { 
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%); 
+            color: white; 
+            text-align: center; 
             position: relative;
+            overflow: hidden;
         }
         
         .events::before {
@@ -334,266 +461,406 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.95), rgba(26, 36, 47, 0.95));
-            z-index: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="white" opacity="0.03" d="M0,0 L100,0 L100,100 Z"/></svg>');
+            background-size: cover;
+            pointer-events: none;
         }
         
-        .events .container {
+        .events h2 { 
+            color: white; 
             position: relative;
-            z-index: 1;
         }
         
-        .events h2 {
-            color: white;
-        }
-        
-        .event-card {
-            background: rgba(255,255,255,0.1);
-            margin: 20px auto;
-            max-width: 600px;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid var(--accent-orange);
-            text-align: left;
+        .event-card { 
+            background: rgba(255,255,255,0.1); 
+            margin: 25px auto; 
+            max-width: 700px; 
+            padding: 2rem; 
+            border-radius: 15px; 
+            border-left: 5px solid var(--accent-orange); 
+            text-align: left; 
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            position: relative;
         }
         
         .event-card:hover {
-            transform: translateX(5px);
+            transform: translateX(10px);
             background: rgba(255,255,255,0.15);
         }
         
-        .event-date {
-            font-weight: bold;
-            color: var(--accent-orange);
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 5px;
+        .event-date { 
+            font-weight: bold; 
+            color: var(--accent-orange); 
+            text-transform: uppercase; 
+            font-size: 0.9rem; 
+            letter-spacing: 1px; 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
         }
-
-        /* --- REVIEWS --- */
-        .reviews {
+        
+        .event-card h3 { 
+            color: white; 
+            margin: 5px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* --- GOOGLE REVIEWS --- */
+        .reviews { 
+            text-align: center; 
             background: white;
-            text-align: center;
+            position: relative;
         }
         
-        .review-cards {
+        .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
+            margin-top: 3rem;
         }
         
-        .review-card {
-            background: var(--bg-sand);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: all 0.3s ease;
+        .review-card { 
+            background: var(--bg-sand); 
+            padding: 2.5rem 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            text-align: left;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
         
         .review-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
-        .stars {
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-green), var(--ocean-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .review-stars {
             color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
         }
         
-        .review-card p {
+        .review-text {
             flex-grow: 1;
-            margin-bottom: 1rem;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
         }
-
-        /* --- LOCATION --- */
-        .location {
-            background: url('https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=1920&q=60') 
-                      center/cover no-repeat;
-            padding: clamp(4rem, 10vw, 6rem) clamp(1rem, 4vw, 2rem);
-            text-align: center;
-            color: white;
+        
+        .review-author {
+            color: #666;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .reviews-link { 
+            color: var(--accent-orange); 
+            font-weight: bold; 
+            margin-top: 40px; 
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: gap 0.3s ease;
+        }
+        
+        .reviews-link:hover {
+            gap: 15px;
+        }
+        
+        /* --- LOCATION WITH MAP --- */
+        .location { 
+            background: white; 
+            padding-bottom: 0;
+        }
+        
+        .location-box { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%); 
+            color: white; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2); 
+            margin-top: 3rem;
+        }
+        
+        .location-info { 
+            padding: 3.5rem; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+        }
+        
+        .location-info h2 { 
+            color: white; 
+            text-align: left; 
+            margin-bottom: 1.5rem;
+        }
+        
+        .location-details {
+            margin-bottom: 2.5rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1.2rem;
+        }
+        
+        .detail-icon {
+            font-size: 1.3rem;
+            color: var(--accent-orange);
+            min-width: 30px;
+        }
+        
+        .map-container { 
+            min-height: 450px; 
+            width: 100%; 
             position: relative;
         }
         
-        .location::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
-            z-index: 0;
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #1a2530;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
         }
         
-        .location-overlay {
-            background: rgba(255, 255, 255, 0.1);
-            display: inline-block;
-            padding: clamp(2rem, 5vw, 3rem);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
+        .map-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
         
-        .location h2 {
-            color: white;
+        .map-iframe.loaded {
+            opacity: 1;
         }
-
+        
         /* --- FOOTER --- */
-        footer {
-            background: #1a1a1a;
-            color: #888;
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 5px solid var(--primary-green);
+        footer { 
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%); 
+            color: #aaa; 
+            padding: 4rem 2rem 2rem; 
+            text-align: center; 
         }
         
         .footer-content {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
-        footer h3 {
+        .footer-logo {
+            font-family: var(--font-title);
+            font-size: 2rem;
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
         
-        footer p {
-            margin-bottom: 1rem;
+        .footer-tagline {
+            color: #ccc;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .footer-links {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover, .footer-links a:focus {
-            color: var(--accent-orange);
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #888;
         }
         
         /* --- FLOATING BUTTON --- */
         .floating-review-btn {
             position: fixed;
-            bottom: 30px;
+            bottom: 30px; 
             right: 30px;
-            background-color: var(--gold);
+            background: linear-gradient(135deg, var(--gold), #ffaa00);
             color: #333;
-            padding: 12px 25px;
+            padding: 16px 25px;
             border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 2000;
-            text-decoration: none;
-            border: 2px solid white;
-            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+            z-index: 9999; 
+            text-decoration: none; 
+            border: 3px solid white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
         }
         
-        .floating-review-btn:hover, .floating-review-btn:focus {
-            transform: scale(1.05);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        .floating-review-btn:hover { 
+            transform: translateY(-5px) scale(1.05); 
+            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
         }
         
-        /* --- ACCESSIBILITY --- */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+        .floating-review-btn:active {
+            transform: translateY(-2px);
         }
         
-        :focus {
-            outline: 2px solid var(--accent-orange);
-            outline-offset: 2px;
+        /* --- MOBILE MENU --- */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            padding: 5px;
         }
         
         /* --- LOADING STATES --- */
-        .lazy-image {
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
         }
         
-        .lazy-image.loaded {
-            opacity: 1;
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
-
-        /* MOBILE RESPONSIVE */
+        
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: clamp(2.2rem, 5vw, 3.5rem);
+            }
+            
+            .location-box {
+                grid-template-columns: 1fr;
+            }
+            
+            .location-info {
+                padding: 2.5rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             header {
-                flex-direction: column;
                 padding: 1rem;
-                gap: 1rem;
             }
             
-            nav ul {
+            .hero h1 { 
+                font-size: clamp(2rem, 6vw, 2.8rem); 
+            }
+            
+            .hero p {
+                font-size: clamp(1rem, 3vw, 1.2rem);
+            }
+            
+            .btn-group {
+                display: flex;
+                flex-direction: column;
                 gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
+                align-items: center;
             }
             
-            nav a {
-                font-size: 0.8rem;
+            .btn-outline {
+                margin-left: 0;
             }
             
-            .hero {
-                min-height: 70vh;
+            nav ul { 
+                display: none; 
             }
             
-            .menu-grid, .review-cards {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .social-proof-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .about-grid { 
+                grid-template-columns: 1fr; 
+                gap: 3rem;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+            
+            .menu-grid, .reviews-grid {
                 grid-template-columns: 1fr;
             }
             
             .event-card {
-                margin: 15px;
-                padding: 15px;
+                margin: 20px 0;
+                padding: 1.5rem;
             }
             
-            .floating-review-btn {
-                bottom: 20px;
+            .floating-review-btn .text { 
+                display: none; 
+            }
+            
+            .floating-review-btn { 
+                padding: 18px; 
+                border-radius: 50%; 
                 right: 20px;
-                padding: 10px 20px;
-                font-size: 0.9rem;
+                bottom: 20px;
             }
             
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
+            .value-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .value-item {
+                padding: 1.5rem;
             }
         }
         
         @media (max-width: 480px) {
-            section {
-                padding: 2rem 1rem;
+            section { 
+                padding: 3rem 1rem; 
+            }
+            
+            .hero {
+                padding: 1.5rem;
             }
             
             .btn {
-                padding: 10px 25px;
+                padding: 12px 28px;
                 font-size: 0.9rem;
             }
             
@@ -601,216 +868,537 @@
                 padding: 1.5rem;
             }
             
-            .location-overlay {
-                padding: 1.5rem;
+            .location-info {
+                padding: 2rem;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+        
+        /* --- PREFERS-REDUCED-MOTION --- */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* --- DARK MODE SUPPORT --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-sand: #1a1a1a;
+                --text-dark: #e0e0e0;
+            }
+            
+            body {
+                background-color: var(--bg-sand);
+            }
+            
+            .menu-item,
+            .review-card,
+            .value-item {
+                background: #2a2a2a;
+                border-color: #3a3a3a;
+            }
+            
+            .about,
+            .reviews,
+            .location {
+                background: #1a1a1a;
+            }
+            
+            .menu-preview {
+                background: #222;
             }
         }
     </style>
 </head>
-<body>
-
-    <header>
+<body class="js-loading">
+    <header id="mainHeader">
         <a href="#" class="logo">Café Samsara</a>
-        <nav aria-label="Navigation principale">
+        
+        <button class="mobile-menu-btn" aria-label="Abrir menú">☰</button>
+        
+        <nav>
             <ul>
                 <li><a href="#about">Nosotros</a></li>
                 <li><a href="#menu">Menú</a></li>
                 <li><a href="#events">Eventos</a></li>
                 <li><a href="#location">Ubicación</a></li>
+                <li><a href="#reviews">Reseñas</a></li>
             </ul>
         </nav>
-        <a href="#menu" class="btn" style="padding: 8px 15px; font-size: 0.8rem;" aria-label="Pedir u ordenar">Pedir / Order</a>
+        
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button id="langToggle" aria-label="Cambiar idioma" style="background:none; border:none; cursor:pointer; font-weight:bold; color:var(--text-dark);">EN</button>
+            <a href="#menu" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Pedir / Order</a>
+        </div>
     </header>
 
-    <main>
-        <section class="hero" aria-label="Bienvenida">
-            <div class="hero-content">
-                <h1>Tu Oasis Tropical</h1>
-                <p>Café de especialidad, comida consciente y cultura a 20 metros del mar.</p>
+    <section class="hero" aria-label="Bienvenida al Café Samsara">
+        <div class="hero-content">
+            <h1>Tu Oasis Tropical en Zipolite</h1>
+            <p>Café de especialidad, comida consciente y cultura a 20 metros del mar. WiFi rápido, sombra natural y buena vibra.</p>
+            <div class="btn-group">
                 <a href="#menu" class="btn">Ver Menú</a>
+                <a href="#location" class="btn btn-outline">Cómo llegar</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="about" class="about" aria-labelledby="about-heading">
-            <div class="container">
-                <div class="about-grid">
-                    <div>
-                        <h2 id="about-heading">Bienvenido al Oasis</h2>
-                        <p class="subtitle">Más que un café, un refugio.</p>
-                        <p>En el corazón de Zipolite, escondido bajo palmeras gigantes, encontrarás Samsara. Un espacio diseñado para desconectar del mundo y reconectar contigo.</p>
-                        <br>
-                        <p>Ofrecemos <strong>WiFi de fibra óptica</strong> para nómadas digitales, enchufes en cada mesa y la brisa constante del Pacífico.</p>
-                        <br>
-                        <a href="#" class="btn" style="background:var(--primary-green)">Conoce nuestra historia</a>
-                    </div>
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Interior del Café Samsara con plantas y mesas" class="about-img" loading="lazy">
-                    </div>
+    <div class="social-proof">
+        <div class="social-proof-content">
+            <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span>4.9/5 en Google Reviews</span>
+            </div>
+            <div class="rating">
+                <span>⭐</span>
+                <span>Recomendado en TripAdvisor</span>
+            </div>
+            <div class="rating">
+                <span>🏆</span>
+                <span>Mejor Café 2024 - Zipolite</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="value-props">
+        <div class="container">
+            <h2>¿Por qué elegir Samsara?</h2>
+            <p class="subtitle">Todo lo que necesitas para disfrutar de Zipolite al máximo</p>
+            
+            <div class="value-grid">
+                <div class="value-item">
+                    <span class="value-icon">🌐</span>
+                    <h3>WiFi Starlink</h3>
+                    <p>Conexión de fibra óptica rápida y estable. Perfecto para nómadas digitales y reuniones remotas.</p>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">🌴</span>
+                    <h3>Jardín con Sombra</h3>
+                    <p>Refúgiate del sol bajo nuestras palmeras. Ambiente fresco y natural con vista al mar.</p>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">🌱</span>
+                    <h3>Opciones Saludables</h3>
+                    <p>Menú con opciones veganas, gluten-free y ingredientes locales frescos. Todo preparado con amor.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="menu" class="menu-preview" aria-labelledby="menu-heading">
-            <div class="container">
-                <h2 id="menu-heading">Favoritos del Menú</h2>
-                <p class="subtitle">Ingredientes locales, sabor internacional.</p>
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <h2>Bienvenido al Oasis</h2>
+                    <p class="subtitle">Más que un café, un refugio frente al mar.</p>
+                    <p>En el corazón de Zipolite, escondido bajo palmeras gigantes y a solo 20 metros de las olas, encontrarás Samsara. Un espacio diseñado para desconectar del mundo y reconectar contigo mismo.</p>
+                    <p>✅ <strong>WiFi Starlink</strong> - Conexión rápida para trabajo remoto</p>
+                    <p>✅ <strong>Pet Friendly</strong> - Tu mascota es bienvenida</p>
+                    <p>✅ <strong>Fuentes de poder</strong> - Enchufes en cada mesa</p>
+                    <p>✅ <strong>Brisa del mar</strong> - Ventilación natural constante</p>
+                    <br>
+                    <a href="about/" class="btn btn-green">Conoce nuestra historia</a>
+                </div>
+                <div>
+                    <img 
+                        src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" 
+                        alt="Interior del Café Samsara con plantas y mesas de trabajo" 
+                        class="about-img"
+                        loading="lazy"
+                        width="800"
+                        height="600"
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-preview">
+        <div class="container">
+            <h2>Favoritos del Menú</h2>
+            <p class="subtitle">Ingredientes locales, sabor internacional con toque costero.</p>
+            
+            <div class="menu-grid">
+                <article class="menu-item">
+                    <img 
+                        src="https://images.unsplash.com/photo-1525351484164-80fd022820c9?auto=format&fit=crop&w=300&q=80" 
+                        alt="Samsara Toast - Tostada de aguacate con huevo pochado"
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                    >
+                    <h3>Samsara Toast</h3>
+                    <span class="price">$120 MXN</span>
+                    <p>Pan de masa madre, aguacate hass local, huevo pochado y salsa macha casera con un toque de limón de la costa.</p>
+                </article>
                 
-                <div class="menu-grid">
-                    <article class="menu-item">
-                        <img src="https://images.unsplash.com/photo-1525351484164-80fd022820c9?auto=format&fit=crop&w=300&q=80" alt="Tostada de aguacate Samsara" loading="lazy">
-                        <h3>Samsara Toast</h3>
-                        <span class="price">$120 MXN</span>
-                        <p>Pan de masa madre, aguacate hass, huevo pochado y salsa macha casera.</p>
-                    </article>
-                    <article class="menu-item">
-                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=300&q=80" alt="Cold Brew Tónico" loading="lazy">
-                        <h3>Cold Brew Tónico</h3>
-                        <span class="price">$75 MXN</span>
-                        <p>Extracción en frío de 18 horas, agua tónica, romero y un toque de cítricos.</p>
-                    </article>
-                    <article class="menu-item">
-                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80" alt="Tropical Bowl con frutas" loading="lazy">
-                        <h3>Tropical Bowl</h3>
-                        <span class="price">$140 MXN</span>
-                        <p>Base de açai orgánico, granola de la casa, mango, coco y miel de agave.</p>
-                    </article>
-                </div>
-                <div style="text-align:center; margin-top:3rem;">
-                    <a href="menu/" class="btn">Ver Menú Completo</a>
-                </div>
+                <article class="menu-item">
+                    <img 
+                        src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=300&q=80" 
+                        alt="Cold Brew Tónico con romero"
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                    >
+                    <h3>Cold Brew Tónico</h3>
+                    <span class="price">$75 MXN</span>
+                    <p>Extracción en frío de 18 horas, agua tónica, romero fresco de nuestro jardín y un toque de cítricos locales.</p>
+                </article>
+                
+                <article class="menu-item">
+                    <img 
+                        src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80" 
+                        alt="Tropical Bowl con frutas frescas"
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                    >
+                    <h3>Tropical Bowl</h3>
+                    <span class="price">$140 MXN</span>
+                    <p>Base de açai orgánico, granola de la casa, mango de Oaxaca, coco fresco y miel de agave regional.</p>
+                </article>
             </div>
-        </section>
+            <div style="text-align:center; margin-top:3rem;">
+                <a href="menu/" class="btn">Ver Carta Completa</a>
+            </div>
+        </div>
+    </section>
 
-        <section id="events" class="events" aria-labelledby="events-heading">
-            <div class="container">
-                <h2 id="events-heading">Cultura & Eventos</h2>
-                <p style="color:#ccc; margin-bottom:2rem;">La vida sucede aquí.</p>
+    <section id="events" class="events">
+        <div class="container">
+            <h2>Cultura & Eventos</h2>
+            <p style="color:#ccc; margin-bottom:2rem; font-size:1.1rem;">La vida sucede aquí, entre café y olas.</p>
 
-                <article class="event-card">
-                    <div class="event-date">Todos los Jueves / Every Thursday - 19:00</div>
-                    <h3>🎷 Live Jazz Session</h3>
-                    <p>Música en vivo con artistas locales e invitados internacionales. Entrada libre.</p>
+            <article class="event-card">
+                <div class="event-date">
+                    <span>📅</span>
+                    Todos los Jueves / Every Thursday - 19:00
+                </div>
+                <h3>🎷 Live Jazz Session</h3>
+                <p>Música en vivo con artistas locales e invitados internacionales. Con el sonido del mar como fondo. Entrada libre con consumo mínimo.</p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-date">
+                    <span>📅</span>
+                    Sábados / Saturdays - 10:00
+                </div>
+                <h3>🎨 Art & Coffee Workshop</h3>
+                <p>Aprende técnicas de acuarela mientras disfrutas de un latte especial. Materiales incluidos. Reservación recomendada.</p>
+            </article>
+            
+            <article class="event-card">
+                <div class="event-date">
+                    <span>📅</span>
+                    Domingos / Sundays - 08:00
+                </div>
+                <h3>🧘‍♀️ Yoga en la Playa</h3>
+                <p>Clase de yoga al amanecer en la playa, seguida de desayuno saludable en el café. Incluye mat y fruta fresca.</p>
+            </article>
+            
+            <br>
+            <a href="events/" class="btn btn-outline">Ver Calendario Completo</a>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2>Lo que dicen nuestros visitantes</h2>
+            <p class="subtitle">Experiencias reales de viajeros como tú</p>
+
+            <div class="reviews-grid">
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">SJ</div>
+                        <div>
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-author">Sarah J.</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"El mejor lugar para trabajar en Zipolite. El internet es rápido, el café increíble y la vista al mar es inspiradora. Me quedé 3 horas trabajando sin darme cuenta."</p>
+                    <div class="review-meta">
+                        <span>Nómada Digital · </span>
+                        <span>Hace 2 semanas</span>
+                    </div>
                 </article>
 
-                <article class="event-card">
-                    <div class="event-date">Sábados / Saturdays - 10:00</div>
-                    <h3>🎨 Art & Coffee Workshop</h3>
-                    <p>Aprende acuarela mientras disfrutas de un latte. Materiales incluidos.</p>
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">MT</div>
+                        <div>
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-author">Mike T.</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"An absolute oasis in Zipolite. The sound of waves while sipping specialty coffee is magical. Perfect spot to watch the sunset after a beach day."</p>
+                    <div class="review-meta">
+                        <span>Traveler from Canada · </span>
+                        <span>Hace 1 mes</span>
+                    </div>
                 </article>
-                
-                <br>
-                <a href="events/" class="btn" style="border: 1px solid white; background:transparent;">Ver Calendario</a>
+
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">ER</div>
+                        <div>
+                            <div class="review-stars">★★★★★</div>
+                            <div class="review-author">Elena R.</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"La comida es siempre fresca y deliciosa. El Tropical Bowl es mi favorito. El ambiente es relajado y auténtico, no como los lugares turísticos."</p>
+                    <div class="review-meta">
+                        <span>Visitante frecuente · </span>
+                        <span>Hace 3 días</span>
+                    </div>
+                </article>
             </div>
-        </section>
+            
+            <a href="https://g.page/r/CaféSamsaraZipolite/review" target="_blank" rel="noopener noreferrer" class="reviews-link">
+                Leer más reseñas en Google Maps
+                <span>→</span>
+            </a>
+        </div>
+    </section>
 
-        <section class="reviews" aria-labelledby="reviews-heading">
-            <div class="container">
-                <h2 id="reviews-heading">Lo que dicen los viajeros</h2>
-                <p class="subtitle">4.9/5 en Google Reviews</p>
-
-                <div class="review-cards">
-                    <article class="review-card">
-                        <div class="stars" aria-label="5 estrellas">★★★★★</div>
-                        <p>"El mejor lugar para trabajar en Zipolite. El internet es rápido y el café increíble."</p>
-                        <small>- Sarah J.</small>
-                    </article>
-
-                    <article class="review-card">
-                        <div class="stars" aria-label="5 estrellas">★★★★★</div>
-                        <p>"An absolute oasis. The garden is beautiful and the staff is so friendly."</p>
-                        <small>- Mike T.</small>
-                    </article>
-
-                    <article class="review-card">
-                        <div class="stars" aria-label="5 estrellas">★★★★★</div>
-                        <p>"La comida es fresca y deliciosa. Recomiendo mucho el Bowl Tropical."</p>
-                        <small>- Elena R.</small>
-                    </article>
+    <section id="location" class="location">
+        <div class="container">
+            <h2>Encuéntranos Fácilmente</h2>
+            <p class="subtitle">A solo pasos del océano Pacífico</p>
+            
+            <div class="location-box">
+                <div class="location-info">
+                    <h2>Visítanos</h2>
+                    
+                    <div class="location-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <div>
+                                <strong>Dirección:</strong>
+                                <p>Calle Principal s/n<br>Zipolite, Oaxaca, México<br><em>(Frente al acceso a la playa "Amor")</em></p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-icon">🕒</span>
+                            <div>
+                                <strong>Horario:</strong>
+                                <p>Lunes a Domingo<br>08:00 - 22:00 hrs</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-icon">📞</span>
+                            <div>
+                                <strong>Contacto:</strong>
+                                <p>WhatsApp: +52 123 456 7890<br>Email: hola@cafesamsara.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://maps.google.com/?q=Café+Samsara+Zipolite+Oaxaca" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="btn" 
+                       style="background:white; color:#2c3e50; align-self: flex-start;">
+                        📍 Abrir en Google Maps
+                    </a>
                 </div>
                 
-                <br>
-                <a href="/go" target="_blank" rel="noopener noreferrer" style="color:var(--accent-orange); font-weight:bold; text-decoration:underline;">Leer más reseñas en Google Maps</a>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <span>Cargando mapa...</span>
+                    </div>
+                    <iframe 
+                        class="map-iframe"
+                        title="Ubicación del Café Samsara en Zipolite, Oaxaca"
+                        data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15298.315947109138!2d-96.5251553!3d15.6631153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85bea9a8596c29c3%3A0x1d25d51802f4e8e!2sZipolite%2C%20Oax.!5e0!3m2!1ses!2smx!4v1698791234567!5m2!1ses!2smx"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
-        </section>
-
-        <section id="location" class="location" aria-labelledby="location-heading">
-            <div class="location-overlay">
-                <h2 id="location-heading">Visítanos</h2>
-                <p>Calle Principal, Zipolite, Oaxaca.</p>
-                <p>Justo frente al acceso a la playa "Amor".</p>
-                <br>
-                <p style="font-size:1.2rem;">🕘 Lun - Dom: 08:00 - 22:00</p>
-                <br>
-                <a href="https://goo.gl/maps/..." target="_blank" rel="noopener noreferrer" class="btn">Abrir en Mapa</a>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-content">
-            <h3>Café Samsara</h3>
-            <p>Zipolite, Oaxaca, México</p>
-            <br>
-            <div class="footer-links">
-                <a href="#about">Nosotros</a>
-                <a href="#menu">Menú</a>
-                <a href="#events">Eventos</a>
-                <a href="#location">Ubicación</a>
-                <a href="/contacto">Contacto</a>
+            <div class="footer-logo">Café Samsara</div>
+            <p class="footer-tagline">Tu oasis tropical en Zipolite. Café especial, comida consciente y cultura a 20 metros del mar.</p>
+            
+            <div style="margin: 2rem 0;">
+                <a href="#menu" class="btn" style="margin-right: 10px;">Ver Menú</a>
+                <a href="https://wa.me/521234567890" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-color: #aaa; color: #aaa;">Reservar por WhatsApp</a>
             </div>
-            <br>
-            <p>© 2025 Café Samsara. Todos los derechos reservados.</p>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Café Samsara, Zipolite Oaxaca. Todos los derechos reservados.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem; color: #777;">
+                    <a href="/privacy" style="color: #888; text-decoration: none;">Política de Privacidad</a> · 
+                    <a href="/terms" style="color: #888; text-decoration: none;">Términos de Servicio</a>
+                </p>
+            </div>
         </div>
     </footer>
 
-    <a href="/go" target="_blank" rel="noopener noreferrer" class="floating-review-btn" aria-label="Califícanos en Google">
+    <a href="https://g.page/r/CaféSamsaraZipolite/review" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="floating-review-btn" 
+       aria-label="Dejar una reseña en Google">
         <span style="font-size:1.4rem;">★</span>
-        <span style="display:inline-block;">Rate Us</span>
+        <span class="text">Dejar Reseña</span>
     </a>
 
     <script>
-        // Optimisation du chargement des images
+        // Supprimer la classe de loading initiale
+        document.body.classList.remove('js-loading');
+        
+        // Optimisation du chargement différé
         document.addEventListener('DOMContentLoaded', function() {
-            // Chargement différé des images non critiques
+            // Header scroll behavior
+            const header = document.getElementById('mainHeader');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll <= 100) {
+                    header.classList.remove('hidden');
+                } else if (currentScroll > lastScroll && currentScroll > 200) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                
+                lastScroll = currentScroll;
+            });
+            
+            // Lazy load Google Maps
+            const mapIframe = document.querySelector('.map-iframe');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const iframe = entry.target;
+                        iframe.src = iframe.dataset.src;
+                        iframe.classList.add('loaded');
+                        observer.unobserve(iframe);
+                    }
+                });
+            }, {
+                rootMargin: '100px',
+                threshold: 0.1
+            });
+            
+            if (mapIframe) {
+                observer.observe(mapIframe);
+            }
+            
+            // Toggle de langue
+            const langToggle = document.getElementById('langToggle');
+            let isEnglish = false;
+            
+            if (langToggle) {
+                langToggle.addEventListener('click', () => {
+                    isEnglish = !isEnglish;
+                    langToggle.textContent = isEnglish ? 'ES' : 'EN';
+                    // Ici vous pourriez ajouter la logique de traduction
+                });
+            }
+            
+            // Lazy loading des images
             const lazyImages = document.querySelectorAll('img[loading="lazy"]');
             
             if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
+                const imageObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             const img = entry.target;
-                            img.classList.add('loaded');
-                            observer.unobserve(img);
+                            img.style.opacity = '1';
+                            img.style.transition = 'opacity 0.5s ease';
+                            imageObserver.unobserve(img);
                         }
                     });
                 });
                 
-                lazyImages.forEach(img => imageObserver.observe(img));
+                lazyImages.forEach(img => {
+                    img.style.opacity = '0.5';
+                    imageObserver.observe(img);
+                });
             }
             
-            // Animation au défilement
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
+            // Animation au scroll
+            const animateOnScroll = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = "1";
-                        entry.target.style.transform = "translateY(0)";
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
                     }
                 });
-            }, observerOptions);
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
             
             // Observer les éléments à animer
-            document.querySelectorAll('.menu-item, .event-card, .review-card').forEach(el => {
-                el.style.opacity = "0";
-                el.style.transform = "translateY(20px)";
-                el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-                observer.observe(el);
+            document.querySelectorAll('.menu-item, .review-card, .event-card, .value-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                animateOnScroll.observe(el);
             });
+            
+            // Menu mobile
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav ul');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+                    mobileMenuBtn.textContent = nav.style.display === 'flex' ? '✕' : '☰';
+                });
+                
+                // Fermer le menu en cliquant sur un lien
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            nav.style.display = 'none';
+                            mobileMenuBtn.textContent = '☰';
+                        }
+                    });
+                });
+            }
+            
+            // Optimisation pour les réseaux lents
+            if ('connection' in navigator && navigator.connection.saveData === true) {
+                // Mode économie de données activé
+                document.querySelectorAll('img').forEach(img => {
+                    if (!img.hasAttribute('loading')) {
+                        img.setAttribute('loading', 'lazy');
+                    }
+                });
+            }
         });
+        
+        // Préchargement des polices
+        if ('fonts' in document) {
+            document.fonts.ready.then(() => {
+                document.body.style.opacity = '1';
+            });
+        }
     </script>
 </body>
 </html>
